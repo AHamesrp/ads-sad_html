@@ -1,0 +1,26 @@
+header{
+    display: flex;
+    background-color: lightblue;
+    padding: 10px 30vw;
+}
+
+header li{
+    list-style: none;
+}
+
+section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#home{
+    background-color:lightcyan ;
+    padding: 10px 20vw;
+}
+
+#home li{
+    list-style: none;
+}
+
+

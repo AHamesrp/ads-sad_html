@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    display: flex;
+    background-color: lightblue;
+    padding: 10px 70px;
+    justify-content: space-between;
+}
+
+header ul {
+    display: flex;
+    gap: 40px;
+}
+header li{
+    list-style: none;
+}
+
+section {
+    padding: 20px 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.direito img{
+    width: 40vw;
+    height: fit-content;
+    object-fit: cover;
+    box-shadow: 20px 20px 20px rgba(0,0,0,0.3);
+}
+#home{
+    background-color: lightcyan;
+}
+.meio{
+    width: 100%;
+    text-align: center;
+    background-color: lightcyan;
+    padding: 70px;;
+}
+.projeto{
+    background-color: lightcyan;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 25%;
+}

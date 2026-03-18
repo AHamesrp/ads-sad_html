@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pokédex</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #ff0000, #ff8c00, #ffd700);
+        background-size: 600% 600%;
+        animation: gradient 10s ease infinite;
+        font-family: Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    @keyframes gradient {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+    }
+
+    .pokedex {
+        width: 300px;
+        background: #e53935;
+        border: 8px solid #b71c1c;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    .screen {
+        background: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .screen img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .retro-title {
+        margin: 10px 0;
+        font-size: 14px;
+        font-family: 'Press Start 2P', cursive;
+        color: #333;
+    }
+
+    .screen ul {
+        list-style: none;
+        padding: 0;
+        text-align: left;
+    }
+
+    .screen li {
+        margin: 5px 0;
+        font-size: 14px;
+    }
+
+    .buttons {
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    button {
+        width: 30px;
+        height: 30px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .red { background: red; }
+    .blue { background: blue; }
+    .green { background: green; }
+  </style>
+</head>
+<body>
+  <div class="pokedex">
+    <div class="screen">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu">
+      <h2 class="retro-title">#025 Pikachu</h2>
+      <ul>
+        <li><strong>Tipo:</strong> Elétrico ⚡</li>
+        <li><strong>Altura:</strong> 0.4m</li>
+        <li><strong>Peso:</strong> 6.0kg</li>
+      </ul>
+    </div>
+    <div class="buttons">
+      <button class="red"></button>
+      <button class="blue"></button>
+      <button class="green"></button>
+    </div>
+  </div>
+</body>
+</html>

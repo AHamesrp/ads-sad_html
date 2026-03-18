@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.item {
+    flex: 1 1 200px; /* Cresce, encolhe e tem um tamanho base de 200px */
+}
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+}
+.container {
+    width: 100%;
+    padding: 2vw;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+section {
+    padding: 20px 70px;
+    align-items: center;
+    justify-content: space-between;
+}
+.cabecalho{
+    color: rgb(255, 38, 0);
+    align-items: center;
+}
+.boi img{
+    width: 40vw;
+}
+.a{
+    color: blue;
+}
