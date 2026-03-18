@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Fruit - Transformando Frutas Descartadas em Energia Limpa</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green-50: #f0fdf4;
+            --green-100: #dcfce7;
+            --green-600: #16a34a;
+            --green-700: #15803d;
+            --green-800: #166534;
+            --emerald-50: #ecfdf5;
+            --emerald-500: #10b981;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --blue-100: #dbeafe;
+            --blue-800: #1e40af;
+            --purple-100: #f3e8ff;
+            --purple-800: #6b21a8;
+            --orange-100: #fed7aa;
+            --orange-800: #ea580c;
+            --red-100: #fee2e2;
+            --red-800: #991b1b;
+            --pink-100: #fce7f3;
+            --pink-800: #be185d;
+            --yellow-100: #fef3c7;
+            --yellow-800: #92400e;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-900);
+            background-color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 50;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            color: var(--green-600);
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--green-800);
+        }
+
+        .nav-desktop {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-link {
+            color: var(--gray-700);
+            text-decoration: none;
+            transition: color 0.3s;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .nav-link:hover {
+            color: var(--green-600);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: var(--green-600);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--green-700);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gray-700);
+            border: 1px solid var(--gray-200);
+        }
+
+        .btn-outline:hover {
+            background: var(--gray-50);
+        }
+
+        .btn-lg {
+            padding: 16px 32px;
+            font-size: 18px;
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 64px;
+            background: linear-gradient(135deg, var(--green-50), var(--emerald-50));
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .hero-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--green-600);
+        }
+
+        .hero-badge span {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: bold;
+            line-height: 1.2;
+            color: var(--gray-900);
+        }
+
+        .hero-title .highlight {
+            color: var(--green-600);
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--gray-600);
+            max-width: 560px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            padding-top: 32px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--green-600);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray-600);
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, #4ade80, var(--emerald-500));
+            border-radius: 16px;
+            transform: rotate(3deg);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            background: white;
+            padding: 8px;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 768px;
+            margin: 0 auto 64px;
+        }
+
+        .section-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--green-600);
+            margin-bottom: 16px;
+        }
+
+        .section-badge span {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--gray-900);
+            margin-bottom: 24px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: var(--gray-600);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-bottom: 64px;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--green-100);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green-600);
+            font-weight: 600;
+        }
+
+        .step-content h4 {
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+
+        .step-content p {
+            color: var(--gray-600);
+            font-size: 14px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .card-content {
+            padding: 32px;
+            text-align: center;
+        }
+
+        .card-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 64px;
+            height: 64px;
+            background: var(--green-100);
+            border-radius: 50%;
+            margin-bottom: 24px;
+            color: var(--green-600);
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+        }
+
+        .card-description {
+            color: var(--gray-600);
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background: linear-gradient(to bottom, var(--green-50), var(--emerald-50));
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .benefit-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: translateY(-8px);
+        }
+
+        .benefit-content {
+            padding: 32px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .benefit-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background: var(--green-100);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green-600);
+        }
+
+        .benefit-text {
+            flex: 1;
+        }
+
+        .benefit-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+
+        .benefit-description {
+            color: var(--gray-600);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .benefit-stat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .benefit-stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--green-600);
+        }
+
+        .benefit-stat-label {
+            font-size: 14px;
+            color: var(--gray-500);
+        }
+
+        /* Results Card */
+        .results-card {
+            margin-top: 64px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 48px;
+        }
+
+        .results-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .results-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-label-text {
+            color: var(--gray-700);
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: var(--green-600);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .mini-stat {
+            background: var(--green-50);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .mini-stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--green-600);
+            margin-bottom: 8px;
+        }
+
+        .mini-stat-label {
+            font-size: 14px;
+            color: var(--gray-600);
+        }
+
+        /* Collection Points */
+        .collection-points-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: flex-start;
+            margin-bottom: 64px;
+        }
+
+        .points-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .point-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .point-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .point-header {
+            padding: 24px 24px 12px;
+        }
+
+        .point-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .point-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--gray-900);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .badge-active {
+            background: var(--green-100);
+            color: var(--green-800);
+        }
+
+        .badge-soon {
+            background: var(--yellow-100);
+            color: var(--yellow-800);
+        }
+
+        .badge-type {
+            background: transparent;
+            border: 1px solid var(--gray-300);
+            color: var(--gray-700);
+        }
+
+        .badge-market {
+            background: var(--blue-100);
+            color: var(--blue-800);
+        }
+
+        .badge-fair {
+            background: var(--purple-100);
+            color: var(--purple-800);
+        }
+
+        .badge-supermarket {
+            background: var(--orange-100);
+            color: var(--orange-800);
+        }
+
+        .badge-warehouse {
+            background: var(--red-100);
+            color: var(--red-800);
+        }
+
+        .badge-shopping {
+            background: var(--pink-100);
+            color: var(--pink-800);
+        }
+
+        .point-content {
+            padding: 0 24px 24px;
+        }
+
+        .point-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .point-info-icon {
+            width: 16px;
+            height: 16px;
+            color: var(--gray-500);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .point-info-text {
+            font-size: 14px;
+            color: var(--gray-600);
+        }
+
+        .point-actions {
+            display: flex;
+            gap: 8px;
+            padding-top: 8px;
+        }
+
+        .btn-flex-1 {
+            flex: 1;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            margin-top: 64px;
+            background: linear-gradient(to right, var(--green-50), var(--emerald-50));
+            border-radius: 16px;
+            padding: 48px;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+        }
+
+        .cta-description {
+            color: var(--gray-600);
+            margin-bottom: 24px;
+            max-width: 512px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-900);
+            color: white;
+            padding: 64px 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-logo-icon {
+            width: 32px;
+            height: 32px;
+            color: #4ade80;
+        }
+
+        .footer-logo-text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .footer-description {
+            color: var(--gray-400);
+            font-size: 14px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            color: var(--gray-400);
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .social-link:hover {
+            color: white;
+        }
+
+        .footer-title {
+            font-weight: 600;
+            color: white;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-link {
+            color: var(--gray-400);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-icon {
+            width: 16px;
+            height: 16px;
+            color: #4ade80;
+            flex-shrink: 0;
+        }
+
+        .contact-text {
+            color: var(--gray-400);
+            font-size: 14px;
+        }
+
+        .newsletter {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .newsletter-input {
+            padding: 12px;
+            border: 1px solid var(--gray-700);
+            background: var(--gray-800);
+            color: white;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .newsletter-input::placeholder {
+            color: var(--gray-400);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--gray-800);
+            margin-top: 48px;
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .copyright {
+            color: var(--gray-400);
+            font-size: 14px;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-desktop {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content,
+            .about-content,
+            .collection-points-content,
+            .results-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .cta-title {
+                font-size: 24px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .points-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .results-card {
+                padding: 32px 24px;
+            }
+
+            .cta-section {
+                padding: 32px 24px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                text-align: left;
+            }
+
+            .stat {
+                text-align: left;
+            }
+
+            .points-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .point-actions {
+                flex-direction: column;
+            }
+
+            .btn-flex-1 {
+                flex: none;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hide elements initially */
+        .hidden {
+            display: none;
+        }
+
+        /* Icons - Using data URIs for basic icons */
+        .icon {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .icon-leaf {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z'/%3E%3C/svg%3E");
+        }
+
+        .icon-menu {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h16'/%3E%3C/svg%3E");
+        }
+
+        .icon-x {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12'/%3E%3C/svg%3E");
+        }
+
+        .icon-zap {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M13 10V3L4 14h7v7l9-11h-7z'/%3E%3C/svg%3E");
+        }
+
+        .icon-arrow-right {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 5l7 7-7 7'/%3E%3C/svg%3E");
+        }
+
+        .icon-target {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'/%3E%3C/svg%3E");
+        }
+
+        .icon-heart {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'/%3E%3C/svg%3E");
+        }
+
+        .icon-lightbulb {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z'/%3E%3C/svg%3E");
+        }
+
+        .icon-recycle {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15'/%3E%3C/svg%3E");
+        }
+
+        .icon-tree-pine {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z'/%3E%3C/svg%3E");
+        }
+
+        .icon-trending-up {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'/%3E%3C/svg%3E");
+        }
+
+        .icon-shield {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'/%3E%3C/svg%3E");
+        }
+
+        .icon-users {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a4 4 0 11-8 0 4 4 0 018 0z'/%3E%3C/svg%3E");
+        }
+
+        .icon-map-pin {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'/%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 11a3 3 0 11-6 0 3 3 0 016 0z'/%3E%3C/svg%3E");
+        }
+
+        .icon-clock {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'/%3E%3C/svg%3E");
+        }
+
+        .icon-phone {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z'/%3E%3C/svg%3E");
+        }
+
+        .icon-navigation {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 19l9 2-9-18-9 18 9-2zm0 0v-8'/%3E%3C/svg%3E");
+        }
+
+        .icon-mail {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'/%3E%3C/svg%3E");
+        }
+
+        .icon-facebook {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3E%3Cpath d='M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z'/%3E%3C/svg%3E");
+        }
+
+        .icon-instagram {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3E%3Cpath d='M12.017 0C8.396 0 7.996.01 6.84.048 5.691.087 4.898.222 4.195.42a7.831 7.831 0 00-2.357 1.192A7.831 7.831 0 00.42 4.195C.222 4.898.087 5.691.048 6.84.01 7.996 0 8.396 0 12.017c0 3.624.01 4.021.048 5.177.039 1.148.174 1.941.372 2.644a7.831 7.831 0 001.192 2.357 7.831 7.831 0 002.357 1.192c.703.198 1.496.333 2.644.372C7.996 23.99 8.396 24 12.017 24c3.624 0 4.021-.01 5.177-.048 1.148-.039 1.941-.174 2.644-.372a7.831 7.831 0 002.357-1.192A7.831 7.831 0 0023.58 19.83c.198-.703.333-1.496.372-2.644C23.99 16.021 24 15.624 24 12.017c0-3.624-.01-4.021-.048-5.177-.039-1.148-.174-1.941-.372-2.644a7.831 7.831 0 00-1.192-2.357A7.831 7.831 0 0019.83.42c-.703-.198-1.496-.333-2.644-.372C16.021.01 15.624 0 12.017 0zm0 2.155c3.558 0 3.97.013 5.375.052 1.297.06 2.001.277 2.47.46.621.242 1.064.531 1.529.997s.755.908.997 1.529c.183.469.4 1.173.46 2.47.039 1.405.052 1.817.052 5.375s-.013 3.97-.052 5.375c-.06 1.297-.277 2.001-.46 2.47-.242.621-.531 1.064-.997 1.529s-.908.755-1.529.997c-.469.183-1.173.4-2.47.46-1.405.039-1.817.052-5.375.052s-3.97-.013-5.375-.052c-1.297-.06-2.001-.277-2.47-.46-.621-.242-1.064-.531-1.529-.997s-.755-.908-.997-1.529c-.183-.469-.4-1.173-.46-2.47C2.168 15.987 2.155 15.575 2.155 12.017s.013-3.97.052-5.375c.06-1.297.277-2.001.46-2.47.242-.621.531-1.064.997-1.529s.908-.755 1.529-.997c.469-.183 1.173-.4 2.47-.46 1.405-.039 1.817-.052 5.375-.052z'/%3E%3Cpath d='M12.017 5.838a6.179 6.179 0 100 12.358 6.179 6.179 0 000-12.358zm0 10.179a4 4 0 110-8 4 4 0 010 8zm7.846-10.405a1.441 1.441 0 11-2.883 0 1.441 1.441 0 012.883 0z'/%3E%3C/svg%3E");
+        }
+
+        .icon-linkedin {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3E%3Cpath d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z'/%3E%3C/svg%3E");
+        }
+
+        .icon-twitter {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3E%3Cpath d='M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#hero" class="logo" onclick="scrollToSection('hero')">
+                    <div class="logo-icon icon icon-leaf"></div>
+                    <span class="logo-text">Eco Fruit</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav-desktop">
+                    <button class="nav-link" onclick="scrollToSection('sobre')">Sobre Nós</button>
+                    <button class="nav-link" onclick="scrollToSection('beneficios')">Benefícios</button>
+                    <button class="nav-link" onclick="scrollToSection('pontos-coleta')">Pontos de Coleta</button>
+                    <button class="btn btn-primary" onclick="scrollToSection('contato')">Contato</button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <div class="icon icon-menu" id="menu-icon"></div>
+                    <div class="icon icon-x hidden" id="close-icon"></div>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <nav class="mobile-nav" id="mobile-nav">
+                <button class="nav-link" onclick="scrollToSection('sobre')">Sobre Nós</button>
+                <button class="nav-link" onclick="scrollToSection('beneficios')">Benefícios</button>
+                <button class="nav-link" onclick="scrollToSection('pontos-coleta')">Pontos de Coleta</button>
+                <button class="btn btn-primary" onclick="scrollToSection('contato')">Contato</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <div class="icon icon-zap"></div>
+                        <span>Energia Sustentável</span>
+                    </div>
+                    <h1 class="hero-title">
+                        Transformando 
+                        <span class="highlight">Frutas Descartadas</span> 
+                        em Energia Limpa
+                    </h1>
+                    <p class="hero-description">
+                        Na Eco Fruit, convertemos resíduos de frutas em energia renovável, 
+                        criando um futuro mais sustentável e combatendo o desperdício alimentar.
+                    </p>
+                    
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary btn-lg" onclick="scrollToSection('sobre')">
+                            Conheça Nossa Missão
+                            <div class="icon icon-arrow-right"></div>
+                        </button>
+                        <button class="btn btn-outline btn-lg" onclick="scrollToSection('pontos-coleta')">
+                            Ver Pontos de Coleta
+                        </button>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Pontos de Coleta</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">10k+</div>
+                            <div class="stat-label">Kg de Frutas Coletadas</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">2MW</div>
+                            <div class="stat-label">Energia Gerada</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <div class="hero-image-bg"></div>
+                    <div class="hero-image-wrapper">
+                        //<img src="https://images.unsplash.com/photo-1627328855953-c4be8b653a05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmcmVzaCUyMGZydWl0cyUyMGVuZXJneSUyMHN1c3RhaW5hYmxlfGVufDF8fHx8MTc1ODMzMTgxMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="Frutas frescas e sustentáveis" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <div class="icon icon-leaf"></div>
+                    <span>Sobre a Eco Fruit</span>
+                </div>
+                <h2 class="section-title">
+                    Inovação Sustentável para um Futuro Melhor
+                </h2>
+                <p class="section-description">
+                    Somos pioneiros na conversão de resíduos orgânicos em energia renovável. 
+                    Nossa tecnologia revolucionária transforma frutas descartadas em eletricidade limpa, 
+                    contribuindo para um planeta mais sustentável.
+                </p>
+            </div>
+
+            <div class="about-content">
+                <div>
+                    <h3 style="font-size: 24px; font-weight: bold; color: var(--gray-900); margin-bottom: 24px;">
+                        Como Funciona Nossa Tecnologia
+                    </h3>
+                    <div>
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Coleta Seletiva</h4>
+                                <p>Coletamos frutas descartadas em nossos pontos estratégicos espalhados pela cidade.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Processamento</h4>
+                                <p>Utilizamos biodigestão anaeróbica para converter os açúcares das frutas em biogás.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Geração de Energia</h4>
+                                <p>O biogás é convertido em eletricidade limpa através de geradores especializados.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <img src="https://images.unsplash.com/photo-1757281096650-8bd9b7203410?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaXRydXMlMjBmcnVpdHMlMjBvcmdhbmljJTIwd2FzdGV8ZW58MXx8fHwxNzU4MzMxODEzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="Tecnologia de energia renovável" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);" />
+                </div>
+            </div>
+
+            <div class="values-grid">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <div class="icon icon-target"></div>
+                        </div>
+                        <h3 class="card-title">Nossa Missão</h3>
+                        <p class="card-description">Transformar resíduos de frutas em energia limpa, reduzindo o desperdício alimentar e promovendo a sustentabilidade.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <div class="icon icon-heart"></div>
+                        </div>
+                        <h3 class="card-title">Nossos Valores</h3>
+                        <p class="card-description">Comprometidos com o meio ambiente, inovação tecnológica e responsabilidade social para um futuro mais verde.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <div class="icon icon-lightbulb"></div>
+                        </div>
+                        <h3 class="card-title">Nossa Visão</h3>
+                        <p class="card-description">Ser referência global em energia renovável derivada de biomassa, criando um mundo mais sustentável e eficiente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="beneficios" class="section benefits">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <div class="icon icon-tree-pine"></div>
+                    <span>Nossos Benefícios</span>
+                </div>
+                <h2 class="section-title">
+                    Por Que Escolher a Eco Fruit?
+                </h2>
+                <p class="section-description">
+                    Nossa solução inovadora traz benefícios concretos para o meio ambiente, 
+                    economia e sociedade, criando um impacto positivo mensurável.
+                </p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-content">
+                        <div class="benefit-icon">
+                            <div class="icon icon-recycle"></div>
+                        </div>
+                        <div class="benefit-text">
+                            <h3 class="benefit-title">Redução de Resíduos</h3>
+                            <p class="benefit-description">Evitamos que toneladas de frutas sejam descartadas em aterros sanitários, reduzindo a poluição ambiental.</p>
+                            <div class="benefit-stat">
+                                <span class="benefit-stat-number">85%</span>
+                                <span class="benefit-stat-label">Menos resíduos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-content">
+                        <div class="benefit-icon">
+                            <div class="icon icon-tree-pine"></div>
+                        </div>
+                        <div class="benefit-text">
+                            <h3 class="benefit-title">Impacto Ambiental Positivo</h3>
+                            <p class="benefit-description">Nossa tecnologia reduz as emissões de gases do efeito estufa e promove a economia circular.</p>
+                            <div class="benefit-stat">
+                                <span class="benefit-stat-number">70%</span>
+                                <span class="benefit-stat-label">Menos CO₂</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-content">
+                        <div class="benefit-icon">
+                            <div class="icon icon-zap"></div>
+                        </div>
+                        <div class="benefit-text">
+                            <h3 class="benefit-title">Energia Limpa</h3>
+                            <p class="benefit-description">Geramos eletricidade renovável que pode abastecer milhares de residências de forma sustentável.</p>
+                            <div class="benefit-stat">
+                                <span class="benefit-stat-number">2MW</span>
+                                <span class="benefit-stat-label">Energia gerada</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-content">
+                        <div class="benefit-icon">
+                            <div class="icon icon-trending-up"></div>
+                        </div>
+                        <div class="benefit-text">
+                            <h3 class="benefit-title">Economia Local</h3>
+                            <p class="benefit-description">Criamos empregos verdes e fomentamos a economia circular na nossa região.</p>
+                            <div class="benefit-stat">
+                                <span class="benefit-stat-number">150+</span>
+                                <span class="benefit-stat-label">Empregos criados</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-content">
+                        <div class="benefit-icon">
+                            <div class="icon icon-shield"></div>
+                        </div>
+                        <div class="benefit-text">
+                            <h3 class="benefit-title">Tecnologia Segura</h3>
+                            <p class="benefit-description">Nossos processos são completamente seguros e não geram subprodutos tóxicos ou prejudiciais.</p>
+                            <div class="benefit-stat">
+                                <span class="benefit-stat-number">100%</span>
+                                <span class="benefit-stat-label">Segurança</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-content">
+                        <div class="benefit-icon">
+                            <div class="icon icon-users"></div>
+                        </div>
+                        <div class="benefit-text">
+                            <h3 class="benefit-title">Benefício Social</h3>
+                            <p class="benefit-description">Envolvemos a comunidade na coleta seletiva, promovendo educação ambiental e consciência ecológica.</p>
+                            <div class="benefit-stat">
+                                <span class="benefit-stat-number">50K+</span>
+                                <span class="benefit-stat-label">Pessoas impactadas</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-card">
+                <div class="results-content">
+                    <div>
+                        <h3 style="font-size: 32px; font-weight: bold; color: var(--gray-900); margin-bottom: 16px;">
+                            Resultados Comprovados
+                        </h3>
+                        <p style="color: var(--gray-600); margin-bottom: 24px;">
+                            Nossos números falam por si só. Em apenas dois anos de operação, 
+                            já conseguimos impactos significativos que demonstram a eficácia 
+                            da nossa tecnologia sustentável.
+                        </p>
+                        <div class="results-stats">
+                            <div class="stat-row">
+                                <span class="stat-label-text">Frutas coletadas</span>
+                                <span class="stat-value">10,000+ kg</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label-text">Energia gerada</span>
+                                <span class="stat-value">2 MW</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label-text">CO₂ evitado</span>
+                                <span class="stat-value">150 toneladas</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label-text">Famílias beneficiadas</span>
+                                <span class="stat-value">5,000+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="results-grid">
+                        <div class="mini-stat">
+                            <div class="mini-stat-number">2</div>
+                            <div class="mini-stat-label">Anos de operação</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-stat-number">50+</div>
+                            <div class="mini-stat-label">Pontos de coleta</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-stat-number">24/7</div>
+                            <div class="mini-stat-label">Funcionamento</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-stat-number">99%</div>
+                            <div class="mini-stat-label">Eficiência</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection Points Section -->
+    <section id="pontos-coleta" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <div class="icon icon-map-pin"></div>
+                    <span>Pontos de Coleta</span>
+                </div>
+                <h2 class="section-title">
+                    Encontre o Ponto Mais Próximo
+                </h2>
+                <p class="section-description">
+                    Temos pontos de coleta estrategicamente localizados pela cidade para facilitar 
+                    o descarte consciente de frutas e resíduos orgânicos.
+                </p>
+            </div>
+
+            <div class="collection-points-content">
+                <div>
+                    <h3 style="font-size: 24px; font-weight: bold; color: var(--gray-900); margin-bottom: 24px;">Como Participar</h3>
+                    <div>
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Separe as Frutas</h4>
+                                <p>Colete frutas maduras, cascas e restos orgânicos em casa ou no trabalho.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Encontre um Ponto</h4>
+                                <p>Use nosso mapa para localizar o ponto de coleta mais próximo de você.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Deposite no Container</h4>
+                                <p>Coloque os materiais em nossos containers verdes identificados.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <img src="https://images.unsplash.com/photo-1553425724-03f23313270a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZWN5Y2xpbmclMjBjb2xsZWN0aW9uJTIwcG9pbnR8ZW58MXx8fHwxNzU4MzMxODEzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="Ponto de coleta Eco Fruit" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);" />
+                </div>
+            </div>
+
+            <div class="points-grid">
+                <!-- Collection Point 1 -->
+                <div class="point-card">
+                    <div class="point-header">
+                        <div class="point-header-top">
+                            <h3 class="point-name">Mercado Central</h3>
+                            <span class="badge badge-active">Ativo</span>
+                        </div>
+                        <span class="badge badge-type badge-market">Mercado</span>
+                    </div>
+                    <div class="point-content">
+                        <div class="point-info">
+                            <div class="point-info-icon icon icon-map-pin"></div>
+                            <span class="point-info-text">Rua do Comércio, 123 - Centro</span>
+                        </div>
+                        <div class="point-info">
+                            <div class="point-info-icon icon icon-clock"></div>
+                            <span class="point-info-text">Segunda a Sábado: 6h às 18h</span>
+                        </div>
+                        <div class="point-info">
+                            <div class="point-info-icon icon icon-phone"></div>
+                            <span class="point-info-text">(11) 9999-1111</span>
+                        </div>
+                        <div class="point-actions">
+                            <button class="btn btn-outline btn-sm btn-flex-1" onclick="openDirections(-23.5505, -46.6333)">
+                                <div class="icon icon-navigation"></div>
+                                Direções
+                            </button>
+                            <button class="btn btn-outline btn-sm" onclick="makeCall('(11) 9999-1111')">
+                                <div class="icon icon-phone"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collection Point 2 -->
+                <div class="point-card">
+                    <div class="point-header">
+                        <div class="point-header-top">
+                            <h3 class="point-name">Feira Orgânica Vila Madalena</h3>
+                            <span class="badge badge-active">Ativo</span>
+                        </div>
+                        <span class="badge badge-type badge-fair">Feira</span>
+                    </div>
+                    <div class="point-content">
+                        <div class="point-info">
+                            <div class="point-info-icon icon icon-map-pin"></div>
+                            <span class="point-info-text">Praça Benedito Calixto - Vila Madalena</span>
+                        </div>
+                        <div class="point-info">
+                            <div class="point-info-icon icon icon-clock"></div>
+                            <span class="point-info-text">Sábados: 7h às 14h</span>
+                        </div>
+                        <div class="point-info">
+                            <div class="point-info-icon icon icon-phone"></div>
+                            <span class="point-info-text">(11) 9999-2222</span>
+                        </div>
+                        <div class="point-actions">
+                            <button class="btn btn-outline btn-sm btn-flex-1" onclick="openDirections(-23.5614, -46.6911)">
+                                <div class="icon icon-navigation"></div>
+                                Direções
+                            </button>
+                            <button class="btn btn-outline btn-sm" onclick="makeCall('(11) 9999-2222')">
+                                <div class="icon icon-phone"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collection Point 3 -->
+                <div class="point-card">
+                    <div class="point-header">
+                        <div class="point-header-top">
+                            <h3 class="point-name">Supermercado EcoVida</h3>
+                            <span class="badge badge-active">Ativo</span>
+                        </div>
+                        <span class="badge badge-type badge-supermarket">Supermercado</span>
+                    </div>
+                    <div class="point-content">
+                        <div class="point-info">
+                            <div class="point-info-icon icon icon-map-pin"></div>
+                            <span class="point-info-text">Av. Paulista, 1000 - Bela Vista</span>
+                        </div>
+                        <div class="point-info">
+                            <div class="point-info-icon icon icon-clock"></div>
+                            <span class="point-info-text">Todos os dias: 7h às 22h</span>
+                        </div>
+                        <div class="point-info">
+                            <div class="point-info-icon icon icon-phone"></div>
+                            <span class="point-info-text">(11) 9999-3333</span>
+                        </div>
+                        <div class="point-actions">
+                            <button class="btn btn-outline btn-sm btn-flex-1" onclick="openDirections(-23.5618, -46.6561)">
+                                <div class="icon icon-navigation"></div>
+                                Direções
+                            </button>
+                            <button class="btn btn-outline btn-sm" onclick="makeCall('(11) 9999-3333')">
+                                <div class="icon icon-phone"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collection Point 4 -->
+                <div class="point-card">
+                    <div class="point-header">
+                        <div class="point-header-top">
+                            <h3 class="point-name">CEAGESP - Entreposto Terminal São Paulo</h3>
+                            <span class="badge badge-active">Ativo</span>
+                        </div>
+                        <span class="badge badge-type badge-warehouse">Entreposto</span>
+                    </div>
+                    <div class="point-content">
+                        <div class="point-info">
+                            <div class="point-info-icon icon icon-map-pin"></div>
+                            <span class="point-info-text">Av. Dr. Gastão Vidigal, 1946 - Vila Leopoldina</span>
+                        </div>
+                        <div class="point-info">
+                            <div class="point-info-icon icon icon-clock"></div>
+                            <span class="point-info-text">Terça a Domingo: 4h às 12h</span>
+                        </div>
+                        <div class="point-info">
+                            <div class="point-info-icon icon icon-phone"></div>
+                            <span class="point-info-text">(11) 9999-4444</span>
+                        </div>
+                        <div class="point-actions">
+                            <button class="btn btn-outline btn-sm btn-flex-1" onclick="openDirections(-23.5341, -46.7378)">
+                                <div class="icon icon-navigation"></div>
+                                Direções
+                            </button>
+                            <button class="btn btn-outline btn-sm" onclick="makeCall('(11) 9999-4444')">
+                                <div class="icon icon-phone"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collection Point 5 -->
+                <div class="point-card">
+                    <div class="point-header">
+                        <div class="point-header-top">
+                            <h3 class="point-name">Mercado Municipal de Pinheiros</h3>
+                            <span class="badge badge-soon">Em breve</span>
+                        </div>
+                        <span class="badge badge-type badge-market">Mercado</span>
+                    </div>
+                    <div class="point-content">
+                        <div class="point-info">
+                            <div class="point-info-icon icon icon-map-pin"></div>
+                            <span class="point-info-text">Rua Pedro Cristi, 89 - Pinheiros</span>
+                        </div>
+                        <div class="point-info">
+                            <div class="point-info-icon icon icon-clock"></div>
+                            <span class="point-info-text">Segunda a Sábado: 7h às 19h</span>
+                        </div>
+                        <div class="point-info">
+                            <div class="point-info-icon icon icon-phone"></div>
+                            <span class="point-info-text">(11) 9999-5555</span>
+                        </div>
+                        <div class="point-actions">
+                            <button class="btn btn-outline btn-sm btn-flex-1" onclick="openDirections(-23.5631, -46.7005)">
+                                <div class="icon icon-navigation"></div>
+                                Direções
+                            </button>
+                            <button class="btn btn-outline btn-sm" onclick="makeCall('(11) 9999-5555')">
+                                <div class="icon icon-phone"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collection Point 6 -->
+                <div class="point-card">
+                    <div class="point-header">
+                        <div class="point-header-top">
+                            <h3 class="point-name">Shopping Cidade Jardim - Praça de Alimentação</h3>
+                            <span class="badge badge-active">Ativo</span>
+                        </div>
+                        <span class="badge badge-type badge-shopping">Shopping</span>
+                    </div>
+                    <div class="point-content">
+                        <div class="point-info">
+                            <div class="point-info-icon icon icon-map-pin"></div>
+                            <span class="point-info-text">Av. Magalhães de Castro, 12000 - Cidade Jardim</span>
+                        </div>
+                        <div class="point-info">
+                            <div class="point-info-icon icon icon-clock"></div>
+                            <span class="point-info-text">Todos os dias: 10h às 22h</span>
+                        </div>
+                        <div class="point-info">
+                            <div class="point-info-icon icon icon-phone"></div>
+                            <span class="point-info-text">(11) 9999-6666</span>
+                        </div>
+                        <div class="point-actions">
+                            <button class="btn btn-outline btn-sm btn-flex-1" onclick="openDirections(-23.6058, -46.7086)">
+                                <div class="icon icon-navigation"></div>
+                                Direções
+                            </button>
+                            <button class="btn btn-outline btn-sm" onclick="makeCall('(11) 9999-6666')">
+                                <div class="icon icon-phone"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h3 class="cta-title">
+                    Quer um Ponto de Coleta na Sua Região?
+                </h3>
+                <p class="cta-description">
+                    Estamos sempre expandindo nossa rede de coleta. Se você representa um estabelecimento 
+                    comercial ou comunidade interessada em ter um ponto de coleta, entre em contato conosco.
+                </p>
+                <button class="btn btn-primary">
+                    Solicitar Novo Ponto
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Company Info -->
+                <div class="footer-section">
+                    <a href="#hero" class="footer-logo" onclick="scrollToSection('hero')">
+                        <div class="footer-logo-icon icon icon-leaf"></div>
+                        <span class="footer-logo-text">Eco Fruit</span>
+                    </a>
+                    <p class="footer-description">
+                        Transformando frutas descartadas em energia limpa para um futuro mais sustentável.
+                    </p>
+                    <div class="social-links">
+                        <button class="social-link">
+                            <div class="icon icon-facebook"></div>
+                        </button>
+                        <button class="social-link">
+                            <div class="icon icon-instagram"></div>
+                        </button>
+                        <button class="social-link">
+                            <div class="icon icon-linkedin"></div>
+                        </button>
+                        <button class="social-link">
+                            <div class="icon icon-twitter"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Links Rápidos</h3>
+                    <div class="footer-links">
+                        <button class="footer-link" onclick="scrollToSection('sobre')">Sobre Nós</button>
+                        <button class="footer-link" onclick="scrollToSection('beneficios')">Benefícios</button>
+                        <button class="footer-link" onclick="scrollToSection('pontos-coleta')">Pontos de Coleta</button>
+                        <a href="#" class="footer-link">Blog</a>
+                        <a href="#" class="footer-link">Carreiras</a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Contato</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon icon icon-mail"></div>
+                            <span class="contact-text">contato@ecofruit.com.br</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon icon icon-phone"></div>
+                            <span class="contact-text">(11) 9999-0000</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon icon icon-map-pin"></div>
+                            <span class="contact-text">
+                                Rua Verde, 123<br />
+                                São Paulo - SP, 01234-567
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Newsletter</h3>
+                    <p class="footer-description">
+                        Receba novidades sobre sustentabilidade e energia limpa.
+                    </p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Seu e-mail" class="newsletter-input" id="newsletter-email" />
+                        <button class="btn btn-primary" onclick="subscribeNewsletter()">
+                            Inscrever-se
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright">
+                    © 2024 Eco Fruit. Todos os direitos reservados.
+                </p>
+                <div class="footer-bottom-links">
+                    <a href="#" class="footer-link">Política de Privacidade</a>
+                    <a href="#" class="footer-link">Termos de Uso</a>
+                    <a href="#" class="footer-link">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functions
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            // Close mobile menu if open
+            const mobileNav = document.getElementById('mobile-nav');
+            mobileNav.classList.remove('active');
+            document.getElementById('menu-icon').classList.remove('hidden');
+            document.getElementById('close-icon').classList.add('hidden');
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobile-nav');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+            
+            mobileNav.classList.toggle('active');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        }
+
+        // Collection points functions
+        function openDirections(lat, lng) {
+            window.open(`https://maps.google.com/?q=${lat},${lng}`, '_blank');
+        }
+
+        function makeCall(phoneNumber) {
+            window.open(`tel:${phoneNumber}`, '_blank');
+        }
+
+        // Newsletter subscription
+        function subscribeNewsletter() {
+            const email = document.getElementById('newsletter-email').value;
+            if (email) {
+                alert('Obrigado por se inscrever! Você receberá nossas novidades em breve.');
+                document.getElementById('newsletter-email').value = '';
+            } else {
+                alert('Por favor, insira um e-mail válido.');
+            }
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileNav = document.getElementById('mobile-nav');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (mobileNav.classList.contains('active') && 
+                !mobileNav.contains(event.target) && 
+                !mobileMenuBtn.contains(event.target)) {
+                toggleMobileMenu();
+            }
+        });
+
+        // Smooth scroll behavior for browsers that don't support CSS scroll-behavior
+        if (!CSS.supports('scroll-behavior', 'smooth')) {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

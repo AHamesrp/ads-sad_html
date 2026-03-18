@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoRide - Protótipo Mobile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 15px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .mobile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .mobile-screen {
+            background: #333;
+            border-radius: 20px;
+            padding: 8px;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        
+        .mobile-content {
+            background: white;
+            border-radius: 15px;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+            padding: 0;
+        }
+        
+        .status-bar {
+            height: 25px;
+            background: #f8f8f8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            font-size: 11px;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .screen-title {
+            background: #e8e8e8;
+            padding: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 12px;
+            margin: 0;
+        }
+        
+        .screen-body {
+            padding: 15px;
+            height: calc(100% - 80px);
+            overflow-y: auto;
+        }
+        
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 15px;
+        }
+        
+        .back-arrow {
+            font-size: 18px;
+            color: #666;
+        }
+        
+        .header-title {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .profile-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #ddd;
+            border: 2px solid #999;
+        }
+        
+        .mobile-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        
+        .mobile-button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #2196F3;
+            color: white;
+        }
+        
+        .btn-outline {
+            background: white;
+            color: #4CAF50;
+            border: 2px solid #4CAF50;
+        }
+        
+        .logo-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .logo-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        .tagline {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .card {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .ride-card {
+            border-left: 4px solid #4CAF50;
+            padding: 12px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .ride-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        
+        .driver-info {
+            flex: 1;
+        }
+        
+        .driver-name {
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .rating {
+            color: #FF9800;
+            font-size: 12px;
+        }
+        
+        .ride-details {
+            font-size: 12px;
+            color: #666;
+            margin: 4px 0;
+        }
+        
+        .price-info {
+            text-align: right;
+        }
+        
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        .price-label {
+            font-size: 10px;
+            color: #666;
+        }
+        
+        .nav-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+        }
+        
+        .nav-item {
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+            flex: 1;
+        }
+        
+        .nav-item.active {
+            color: #4CAF50;
+        }
+        
+        .nav-icon {
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+        
+        .route-input {
+            position: relative;
+            margin: 15px 0;
+        }
+        
+        .route-dot {
+            position: absolute;
+            left: 8px;
+            top: 18px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        
+        .route-dot.origin {
+            background: #4CAF50;
+        }
+        
+        .route-dot.destination {
+            background: #f44336;
+        }
+        
+        .route-input input {
+            padding-left: 25px;
+        }
+        
+        .date-time-row {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .date-time-row input {
+            flex: 1;
+        }
+        
+        .success-icon {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .success-icon div {
+            font-size: 60px;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        
+        .chat-area {
+            height: 280px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px 0;
+            background: #fafafa;
+        }
+        
+        .message {
+            margin: 8px 0;
+            padding: 8px 12px;
+            border-radius: 12px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        
+        .message.received {
+            background: #e3f2fd;
+            margin-right: 20%;
+        }
+        
+        .message.sent {
+            background: #f1f8e9;
+            margin-left: 20%;
+        }
+        
+        .message-time {
+            font-size: 10px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        
+        .chat-input {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+        }
+        
+        .chat-input button {
+            padding: 10px 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        
+        .notification-badge {
+            background: #ff5722;
+            color: white;
+            border-radius: 50%;
+            width: 6px;
+            height: 6px;
+            position: absolute;
+            top: 2px;
+            right: 2px;
+        }
+        
+        .verification-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .verification-item:last-child {
+            border-bottom: none;
+        }
+        
+        .check-icon {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .flow-number {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📱 EcoRide - Protótipo Mobile (Baixa Fidelidade)</h1>
+            <p><strong>Sistema de Carona Compartilhada - Versão Mobile</strong></p>
+            <p>Interface otimizada para smartphones com navegação touch</p>
+        </div>
+
+        <div class="mobile-grid">
+            <!-- Tela 1: Splash Screen -->
+            <div class="mobile-screen">
+                <div class="flow-number">1</div>
+                <div class="mobile-content">
+                    <div class="status-bar">
+                        <span>9:41</span>
+                        <span>••••• 📶 🔋</span>
+                    </div>
+                    <div class="screen-title">Splash Screen</div>
+                    <div class="screen-body">
+                        <div class="logo-section">
+                            <div class="logo-icon">🚗</div>
+                            <div class="logo-text">EcoRide</div>
+                            <div class="tagline">Carona inteligente e sustentável</div>
+                        </div>
+                        
+                        <div style="text-align: center; margin: 60px 0; color: #666;">
+                            <div>Conectando pessoas,</div>
+                            <div>reduzindo custos</div>
+                        </div>
+                        
+                        <button class="mobile-button btn-primary">Começar</button>
+                        
+                        <div style="text-align: center; margin-top: 40px; font-size: 12px; color: #999;">
+                            Versão 1.0
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tela 2: Login -->
+            <div class="mobile-screen">
+                <div class="flow-number">2</div>
+                <div class="mobile-content">
+                    <div class="status-bar">
+                        <span>9:42</span>
+                        <span>••••• 📶 🔋</span>
+                    </div>
+                    <div class="screen-title">Login / Cadastro</div>
+                    <div class="screen-body">
+                        <div style="text-align: center; margin: 20px 0;">
+                            <div class="logo-text" style="font-size: 20px;">🚗 EcoRide</div>
+                        </div>
+                        
+                        <div class="card">
+                            <div style="font-weight: bold; margin-bottom: 15px;">Fazer Login</div>
+                            <input type="email" class="mobile-input" placeholder="E-mail">
+                            <input type="password" class="mobile-input" placeholder="Senha">
+                            <button class="mobile-button btn-primary">Entrar</button>
+                            <div style="text-align: center; font-size: 12px; color: #666; margin-top: 10px;">
+                                Esqueci minha senha
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin: 20px 0; color: #666;">
+                            ou
+                        </div>
+                        
+                        <button class="mobile-button btn-outline">Criar Conta</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tela 3: Cadastro -->
+            <div class="mobile-screen">
+                <div class="flow-number">3</div>
+                <div class="mobile-content">
+                    <div class="status-bar">
+                        <span>9:43</span>
+                        <span>••••• 📶 🔋</span>
+                    </div>
+                    <div class="screen-title">Cadastro</div>
+                    <div class="screen-body">
+                        <div class="app-header">
+                            <span class="back-arrow">←</span>
+                            <span class="header-title">Criar conta</span>
+                            <span></span>
+                        </div>
+                        
+                        <div class="card">
+                            <input type="text" class="mobile-input" placeholder="Nome completo">
+                            <input type="email" class="mobile-input" placeholder="E-mail">
+                            <input type="tel" class="mobile-input" placeholder="Telefone">
+                            <input type="password" class="mobile-input" placeholder="Senha">
+                            <input type="password" class="mobile-input" placeholder="Confirmar senha">
+                            
+                            <div style="margin: 15px 0; font-size: 12px;">
+                                <label>
+                                    <input type="checkbox"> Aceito os termos de uso e política de privacidade
+                                </label>
+                            </div>
+                            
+                            <button class="mobile-button btn-primary">Criar Conta</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tela 4: Home -->
+            <div class="mobile-screen">
+                <div class="flow-number">4</div>
+                <div class="mobile-content">
+                    <div class="status-bar">
+                        <span>9:45</span>
+                        <span>••••• 📶 🔋</span>
+                    </div>
+                    <div class="screen-title">Tela Principal</div>
+                    <div class="screen-body" style="padding-bottom: 50px;">
+                        <div class="app-header">
+                            <span style="font-weight: bold;">Olá, João! 👋</span>
+                            <div class="profile-icon"></div>
+                        </div>
+                        
+                        <div class="card">
+                            <div style="text-align: center; font-weight: bold; margin-bottom: 20px;">
+                                O que você quer fazer?
+                            </div>
+                            <button class="mobile-button btn-primary">🔍 Buscar Carona</button>
+                            <button class="mobile-button btn-secondary">🚗 Oferecer Carona</button>
+                        </div>
+                        
+                        <div class="card">
+                            <div style="font-weight: bold; margin-bottom: 15px;">Últimas viagens</div>
+                            <div class="ride-card">
+                                <div>São Paulo → Campinas</div>
+                                <div class="ride-details">Hoje, 14:30 - R$ 25,00</div>
+                            </div>
+                            <div class="ride-card">
+                                <div>Campinas → São Paulo</div>
+                                <div class="ride-details">Ontem, 18:00 - R$ 28,00</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-bottom">
+                        <div class="nav-item active">
+                            <div class="nav-icon">🏠</div>
+                            <div>Início</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon">🚗</div>
+                            <div>Viagens</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon">💬</div>
+                            <div>Chat</div>
+                            <div class="notification-badge"></div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon">👤</div>
+                            <div>Perfil</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tela 5: Buscar Carona -->
+            <div class="mobile-screen">
+                <div class="flow-number">5</div>
+                <div class="mobile-content">
+                    <div class="status-bar">
+                        <span>9:46</span>
+                        <span>••••• 📶 🔋</span>
+                    </div>
+                    <div class="screen-title">Buscar Carona</div>
+                    <div class="screen-body">
+                        <div class="app-header">
+                            <span class="back-arrow">←</span>
+                            <span class="header-title">Encontrar carona</span>
+                            <span></span>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="route-input">
+                                <div class="route-dot origin"></div>
+                                <input type="text" class="mobile-input" placeholder="De onde?">
+                            </div>
+                            
+                            <div class="route-input">
+                                <div class="route-dot destination"></div>
+                                <input type="text" class="mobile-input" placeholder="Para onde?">
+                            </div>
+                            
+                            <div class="date-time-row">
+                                <input type="date" class="mobile-input">
+                                <input type="time" class="mobile-input">
+                            </div>
+                            
+                            <select class="mobile-input">
+                                <option>1 passageiro</option>
+                                <option>2 passageiros</option>
+                                <option>3 passageiros</option>
+                            </select>
+                            
+                            <button class="mobile-button btn-primary">🔍 Buscar Caronas</button>
+                        </div>
+                        
+                        <div style="font-size: 12px; color: #666; text-align: center; margin-top: 20px;">
+                            💡 Dica: Seja flexível com horários para encontrar mais opções
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tela 6: Resultados -->
+            <div class="mobile-screen">
+                <div class="flow-number">6</div>
+                <div class="mobile-content">
+                    <div class="status-bar">
+                        <span>9:47</span>
+                        <span>••••• 📶 🔋</span>
+                    </div>
+                    <div class="screen-title">Resultados</div>
+                    <div class="screen-body">
+                        <div class="app-header">
+                            <span class="back-arrow">←</span>
+                            <span class="header-title">São Paulo → Campinas</span>
+                            <span>🔄</span>
+                        </div>
+                        
+                        <div style="font-size: 12px; color: #666; margin-bottom: 15px;">
+                            3 caronas encontradas para hoje
+                        </div>
+                        
+                        <div class="ride-card">
+                            <div class="ride-header">
+                                <div class="driver-info">
+                                    <div class="driver-name">Maria Silva</div>
+                                    <div class="rating">⭐ 4.8 (127)</div>
+                                    <div class="ride-details">🕐 14:30 → 16:00</div>
+                                    <div class="ride-details">🚗 Honda Civic - 2 vagas</div>
+                                </div>
+                                <div class="price-info">
+                                    <div class="price">R$ 28</div>
+                                    <div class="price-label">por pessoa</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="ride-card">
+                            <div class="ride-header">
+                                <div class="driver-info">
+                                    <div class="driver-name">Carlos Santos</div>
+                                    <div class="rating">⭐ 4.5 (89)</div>
+                                    <div class="ride-details">🕐 15:00 → 16:45</div>
+                                    <div class="ride-details">🚗 Toyota Corolla - 1 vaga</div>
+                                </div>
+                                <div class="price-info">
+                                    <div class="price">R$ 25</div>
+                                    <div class="price-label">por pessoa</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="ride-card">
+                            <div class="ride-header">
+                                <div class="driver-info">
+                                    <div class="driver-name">Ana Costa</div>
+                                    <div class="rating">⭐ 4.9 (203)</div>
+                                    <div class="ride-details">🕐 16:30 → 18:15</div>
+                                    <div class="ride-details">🚗 Volkswagen Polo - 3 vagas</div>
+                                </div>
+                                <div class="price-info">
+                                    <div class="price">R$ 30</div>
+                                    <div class="price-label">por pessoa</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tela 7: Detalhes da Carona -->
+            <div class="mobile-screen">
+                <div class="flow-number">7</div>
+                <div class="mobile-content">
+                    <div class="status-bar">
+                        <span>9:48</span>
+                        <span>••••• 📶 🔋</span>
+                    </div>
+                    <div class="screen-title">Detalhes</div>
+                    <div class="screen-body">
+                        <div class="app-header">
+                            <span class="back-arrow">←</span>
+                            <span class="header-title">Detalhes da carona</span>
+                            <span>❤️</span>
+                        </div>
+                        
+                        <div class="card">
+                            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                <div class="profile-icon" style="width: 50px; height: 50px; margin-right: 15px;"></div>
+                                <div>
+                                    <div class="driver-name" style="font-size: 16px;">Maria Silva</div>
+                                    <div class="rating">⭐⭐⭐⭐⭐ 4.8 (127 avaliações)</div>
+                                    <div style="font-size: 12px; color: #666;">Membro desde 2022</div>
+                                </div>
+                            </div>
+                            
+                            <div style="border-top: 1px solid #eee; padding-top: 15px;">
+                                <div><strong>🚗 Honda Civic</strong> - Branco</div>
+                                <div style="font-size: 12px; color: #666;">Placa: ABC-1234</div>
+                                
+                                <div style="margin: 15px 0;">
+                                    <div>📍 São Paulo → Campinas</div>
+                                    <div style="font-size: 12px; color: #666;">🕐 14:30 - 16:00 (1h30min)</div>
+                                </div>
+                                
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <div class="price">R$ 28,00</div>
+                                        <div style="font-size: 12px; color: #666;">por pessoa</div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 14px; color: #4CAF50;">2 vagas</div>
+                                        <div style="font-size: 12px; color: #666;">disponíveis</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="mobile-button btn-primary">💬 Solicitar Carona</button>
+                        <button class="mobile-button btn-outline">📞 Contatar Motorista</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tela 8: Oferecer Carona -->
+            <div class="mobile-screen">
+                <div class="flow-number">8</div>
+                <div class="mobile-content">
+                    <div class="status-bar">
+                        <span>9:49</span>
+                        <span>••••• 📶 🔋</span>
+                    </div>
+                    <div class="screen-title">Oferecer Carona</div>
+                    <div class="screen-body">
+                        <div class="app-header">
+                            <span class="back-arrow">←</span>
+                            <span class="header-title">Criar viagem</span>
+                            <span></span>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="route-input">
+                                <div class="route-dot origin"></div>
+                                <input type="text" class="mobile-input" placeholder="Saindo de...">
+                            </div>
+                            
+                            <div class="route-input">
+                                <div class="route-dot destination"></div>
+                                <input type="text" class="mobile-input" placeholder="Indo para...">
+                            </div>
+                            
+                            <div class="date-time-row">
+                                <input type="date" class="mobile-input">
+                                <input type="time" class="mobile-input">
+                            </div>
+                            
+                            <input type="number" class="mobile-input" placeholder="Preço por pessoa (R$)">
+                            
+                            <select class="mobile-input">
+                                <option>Vagas disponíveis</option>
+                                <option>1 vaga</option>
+                                <option>2 vagas</option>
+                                <option>3 vagas</option>
+                                <option>4 vagas</option>
+                            </select>
+                            
+                            <textarea class="mobile-input" placeholder="Observações (opcional)" rows="3"></textarea>
+                            
+                            <button class="mobile-button btn-primary">🚗 Publicar Carona</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tela 9: Confirmação -->
+            <div class="mobile-screen">
+                <div class="flow-number">9</div>
+                <div class="mobile-content">
+                    <div class="status-bar">
+                        <span>9:50</span>
+                        <span>••••• 📶 🔋</span>
+                    </div>
+                    <div class="screen-title">Confirmação</div>
+                    <div class="screen-body">
+                        <div class="success-icon">
+                            <div>✅</div>
+                            <div style="font-size: 18px; font-weight: bold; color: #333;">
+                                Carona confirmada!
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div style="font-weight: bold; margin-bottom: 15px;">Detalhes da sua viagem:</div>
+                            <div style="margin: 15px 0;">
+                                <div>📍 São Paulo → Campinas</div>
+                                <div>🕐 Hoje, 14:30</div>
+                                <div>👤 Maria Silva</div>
+                                <div>💰 R$ 28,00</div>
+                            </div>
+                            
+                            <div style="background: #fff3cd; padding: 12px; border-radius: 8px; margin: 15px 0; font-size: 12px;">
+                                ℹ️ A motorista entrou em contato com você. Verifique suas mensagens.
+                            </div>
+                        </div>
+                        
+                        <button class="mobile-button btn-primary">💬 Ir para Chat</button>
+                        <button class="mobile-button btn-outline">🏠 Voltar ao Início</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tela 10: Chat -->
+            <div class="mobile-screen">
+                <div class="flow-number">10</div>
+                <div class="mobile-content">
+                    <div class="status-bar">
+                        <span>9:51</span>
+                        <span>••••• 📶 🔋</span>
+                    </div>
+                    <div class="screen-title">Chat</div>
+                    <div class="screen-body">
+                        <div class="app-header">
+                            <span class="back-arrow">←</span>
+                            <div style="display: flex; align-items: center;">
+                                <div class="profile-icon" style="width: 30px; height: 30px; margin-right: 8px;"></div>
+                                <span class="header-title">Maria Silva</span>
+                            </div>
+                            <span>📞</span>
+                        </div>
+                        
+                        <div class="chat-area">
+                            <div class="message received">
+                                <div class="message-time">Maria - 13:45</div>
+                                <div>Oi! Confirmei sua carona para hoje às 14:30. Vou te buscar no Terminal Rodoviário.</div>
+                            </div>
+                            
+                            <div class="message sent">
+                                <div class="message-time">Você - 13:47</div>
+                                <div>Perfeito! Já estou a caminho. Obrigado!</div>
+                            </div>
+                            
+                            <div class="message received">
+                                <div class="message-time">Maria - 14:15</div>
+                                <div>Chegando em 5 minutos. Estou em um Honda Civic branco, placa ABC-1234.</div>
+                            </div>
+                            
+                            <div class="message sent">
+                                <div class="message-time">Você - 14:16</div>
+                                <div>Beleza! Te vejo logo.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-input">
+                            <input type="text" placeholder="Digite sua mensagem...">
+                            <button>Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tela 11: Perfil -->
+            <div class="mobile-screen">
+                <div class="flow-number">11</div>
+                <div class="mobile-content">
+                    <div class="status-bar">
+                        <span>9:52</span>
+                        <span>••••• 📶 🔋</span>
+                    </div>
+                    <div class="screen-title">Perfil</div>
+                    <div class="screen-body" style="padding-bottom: 50px;">
+                        <div style="text-align: center; margin-bottom: 20px;">
+                            <div class="profile-icon" style="width: 80px; height: 80px; margin: 0 auto 10px auto;"></div>
+                            <div style="font-weight: bold; font-size: 18px;">João Silva</div>
+                            <div class="rating">⭐ 4.6 (23 avaliações)</div>
+                            <div style="font-size: 12px; color: #666;">Membro desde Janeiro 2024</div>
+                        </div>
+                        
+                        <div class="card">
+                            <div style="font-weight: bold; margin-bottom: 10px;">Verificações</div>
+                            <div class="verification-item">
+                                <span>📱 Telefone verificado</span>
+                                <span class="check-icon">✓</span>
+                            </div>
+                            <div class="verification-item">
+                                <span>📧 E-mail verificado</span>
+                                <span class="check-icon">✓</span>
+                            </div>
+                            <div class="verification-item">
+                                <span>🚗 Documento do veículo</span>
+                                <span class="check-icon">✓</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div style="font-weight: bold; margin-bottom: 10px;">Estatísticas</div>
+                            <div class="stats-row">
+                                <span>Viagens como passageiro:</span>
+                                <strong>15</strong>
+                            </div>
+                            <div class="stats-row">
+                                <span>Viagens como motorista:</span>
+                                <strong>8</strong>
+                            </div>
+                            <div class="stats-row">
+                                <span>Cancelamentos:</span>
+                                <strong>0</strong>
+                            </div>
+                        </div>
+                        
+                        <button class="mobile-button btn-outline">Editar Perfil</button>
+                        <button class="mobile-button btn-outline">Configurações</button>
+                    </div>
+                    
+                    <div class="nav-bottom">
+                        <div class="nav-item">
+                            <div class="nav-icon">🏠</div>
+                            <div>Início</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon">🚗</div>
+                            <div>Viagens</div>
+                        </div>
+                        <div class="nav-item">
+                            <div class="nav-icon">💬</div>
+                            <div>Chat</div>
+                        </div>
+                        <div class="nav-item active">
+                            <div class="nav-icon">👤</div>
+                            <div>Perfil</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Documento Mobile -->
+        <div style="background: white; padding: 30px; border-radius: 8px; margin-top: 30px;">
+            <h2 style="text-align: center; color: #4CAF50;">📱 EcoRide Mobile - Documento de Descrição</h2>
+            
+            <div style="margin: 20px 0;">
+                <h3>👥 Integrantes do Grupo:</h3>
+                <p>[Inserir nomes dos integrantes aqui]</p>
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <h3>📱 Proposta Mobile:</h3>
+                <p>O <strong>EcoRide Mobile</strong> é a versão otimizada para smartphones do sistema de carona compartilhada, desenvolvido com foco na experiência mobile-first para usuários brasileiros.</p>
+                
+                <h4>🎯 Características Mobile:</h4>
+                <ul>
+                    <li><strong>Interface touch-friendly:</strong> Botões grandes e elementos facilmente tocáveis</li>
+                    <li><strong>Navegação por abas:</strong> Menu inferior fixo para acesso rápido</li>
+                    <li><strong>Formulários otimizados:</strong> Campos adaptados para teclado mobile</li>
+                    <li><strong>Chat integrado:</strong> Comunicação em tempo real</li>
+                    <li><strong>Notificações push:</strong> Atualizações sobre caronas</li>
+                    <li><strong>Geolocalização:</strong> Busca automática de origem</li>
+                </ul>
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <h3>🔄 Fluxo Mobile Representado:</h3>
+                <ol>
+                    <li><strong>Splash Screen:</strong> Apresentação da marca com loading</li>
+                    <li><strong>Login:</strong> Acesso rápido com opções sociais</li>
+                    <li><strong>Cadastro:</strong> Formulário mobile otimizado</li>
+                    <li><strong>Home:</strong> Dashboard com ações principais e navegação inferior</li>
+                    <li><strong>Buscar Carona:</strong> Interface intuitiva com entrada visual de rotas</li>
+                    <li><strong>Resultados:</strong> Lista vertical de caronas com informações essenciais</li>
+                    <li><strong>Detalhes:</strong> Perfil do motorista e informações completas</li>
+                    <li><strong>Oferecer Carona:</strong> Criação simplificada de viagem</li>
+                    <li><strong>Confirmação:</strong> Feedback visual de sucesso</li>
+                    <li><strong>Chat:</strong> Mensageria em tempo real</li>
+                    <li><strong>Perfil:</strong> Informações do usuário e verificações</li>
+                </ol>
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <h3>📱 Elementos Específicos Mobile:</h3>
+                <ul>
+                    <li><strong>Status Bar:</strong> Horário, bateria e sinal</li>
+                    <li><strong>Navegação por gestos:</strong> Swipe e tap</li>
+                    <li><strong>Menu inferior:</strong> 4 principais funcionalidades</li>
+                    <li><strong>Cards responsivos:</strong> Informações organizadas em blocos</li>
+                    <li><strong>Feedback visual:</strong> Estados de loading e confirmação</li>
+                    <li><strong>Tipografia mobile:</strong> Tamanhos legíveis em tela pequena</li>
+                </ul>
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <h3>🔍 Diferencial Mobile EcoRide:</h3>
+                <ul>
+                    <li>App nativo com performance superior</li>
+                    <li>Integração com GPS e mapas</li>
+                    <li>Notificações push inteligentes</li>
+                    <li>Interface simplificada para uso rápido</li>
+                    <li>Menor consumo de dados</li>
+                    <li>Funcionalidades offline básicas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

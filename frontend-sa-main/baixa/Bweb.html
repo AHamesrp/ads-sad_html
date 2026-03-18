@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoRide - Protótipo de Baixa Fidelidade</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .wireframes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .wireframe {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 400px;
+            position: relative;
+        }
+        
+        .wireframe h3 {
+            margin: 0 0 20px 0;
+            padding: 10px;
+            background: #e8e8e8;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .box {
+            border: 2px solid #999;
+            margin: 10px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+        
+        .input-field {
+            border: 1px solid #ccc;
+            padding: 8px;
+            margin: 5px 0;
+            width: 100%;
+            box-sizing: border-box;
+            background: white;
+        }
+        
+        .button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        
+        .button-secondary {
+            background: #2196F3;
+        }
+        
+        .button-outline {
+            background: white;
+            color: #333;
+            border: 2px solid #333;
+        }
+        
+        .logo-area {
+            height: 80px;
+            border: 2px dashed #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            background: #f0f0f0;
+        }
+        
+        .result-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            background: #fafafa;
+        }
+        
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #999;
+            border-radius: 50%;
+            background: #e0e0e0;
+            margin: 0 auto 10px auto;
+        }
+        
+        .nav-menu {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            border-top: 1px solid #ddd;
+            margin-top: 20px;
+        }
+        
+        .nav-item {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .flow-arrow {
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            font-size: 20px;
+            color: #4CAF50;
+        }
+        
+        .small-text {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .rating {
+            color: #FF9800;
+            font-size: 14px;
+        }
+        
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚗 EcoRide - Protótipo de Baixa Fidelidade</h1>
+            <p><strong>Sistema de Carona Compartilhada - Simples, Barato e Sustentável</strong></p>
+            <p>Fluxo principal: Cadastro → Login → Buscar/Oferecer Carona → Confirmação</p>
+        </div>
+
+        <div class="wireframes-grid">
+            <!-- Tela 1: Splash Screen -->
+            <div class="wireframe">
+                <h3>1. Tela Inicial (Splash)</h3>
+                <div class="logo-area">
+                    <div>
+                        <div style="font-size: 24px; font-weight: bold;">🚗 EcoRide</div>
+                        <div class="small-text">Carona inteligente e sustentável</div>
+                    </div>
+                </div>
+                <div style="margin: 40px 0; text-align: center;">
+                    <div class="small-text">Conectando pessoas,<br>reduzindo custos</div>
+                </div>
+                <button class="button">Começar</button>
+                <div class="small-text">Versão 1.0</div>
+                <div class="flow-arrow">→</div>
+            </div>
+
+            <!-- Tela 2: Login/Cadastro -->
+            <div class="wireframe">
+                <h3>2. Login / Cadastro</h3>
+                <div class="logo-area" style="height: 60px;">
+                    <strong>🚗 EcoRide</strong>
+                </div>
+                
+                <div class="box">
+                    <strong>Fazer Login</strong>
+                    <input type="text" class="input-field" placeholder="E-mail">
+                    <input type="password" class="input-field" placeholder="Senha">
+                    <button class="button">Entrar</button>
+                    <div class="small-text">Esqueci minha senha</div>
+                </div>
+                
+                <div style="text-align: center; margin: 20px 0;">ou</div>
+                
+                <button class="button button-outline">Criar Conta</button>
+                <div class="flow-arrow">→</div>
+            </div>
+
+            <!-- Tela 3: Cadastro -->
+            <div class="wireframe">
+                <h3>3. Cadastro de Usuário</h3>
+                <div class="box">
+                    <strong>Criar sua conta</strong>
+                    <input type="text" class="input-field" placeholder="Nome completo">
+                    <input type="email" class="input-field" placeholder="E-mail">
+                    <input type="tel" class="input-field" placeholder="Telefone">
+                    <input type="password" class="input-field" placeholder="Senha">
+                    <input type="password" class="input-field" placeholder="Confirmar senha">
+                    
+                    <div style="margin: 15px 0;">
+                        <label style="font-size: 12px;">
+                            <input type="checkbox"> Aceito os termos de uso
+                        </label>
+                    </div>
+                    
+                    <button class="button">Criar Conta</button>
+                </div>
+                <div class="flow-arrow">→</div>
+            </div>
+
+            <!-- Tela 4: Home -->
+            <div class="wireframe">
+                <h3>4. Tela Principal (Home)</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <strong>Olá, João!</strong>
+                    <div class="profile-pic" style="width: 40px; height: 40px;"></div>
+                </div>
+                
+                <div class="box">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <strong>O que você quer fazer?</strong>
+                    </div>
+                    
+                    <button class="button">🔍 Buscar Carona</button>
+                    <button class="button button-secondary">🚗 Oferecer Carona</button>
+                </div>
+                
+                <div class="box">
+                    <strong>Últimas viagens</strong>
+                    <div class="result-item">
+                        <div>São Paulo → Campinas</div>
+                        <div class="small-text">Hoje, 14:30 - R$ 25,00</div>
+                    </div>
+                </div>
+                
+                <div class="nav-menu">
+                    <div class="nav-item">🏠 Início</div>
+                    <div class="nav-item">🚗 Viagens</div>
+                    <div class="nav-item">💬 Chat</div>
+                    <div class="nav-item">👤 Perfil</div>
+                </div>
+                <div class="flow-arrow">→</div>
+            </div>
+
+            <!-- Tela 5: Buscar Carona -->
+            <div class="wireframe">
+                <h3>5. Buscar Carona</h3>
+                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                    <span style="font-size: 20px; margin-right: 10px;">←</span>
+                    <strong>Encontrar carona</strong>
+                </div>
+                
+                <div class="box">
+                    <div style="margin: 10px 0;">🔵 <input type="text" class="input-field" placeholder="De onde?" style="width: 85%; display: inline-block;"></div>
+                    <div style="margin: 10px 0;">🔴 <input type="text" class="input-field" placeholder="Para onde?" style="width: 85%; display: inline-block;"></div>
+                    
+                    <div style="display: flex; gap: 10px; margin: 15px 0;">
+                        <input type="date" class="input-field" style="flex: 1;">
+                        <input type="time" class="input-field" style="flex: 1;">
+                    </div>
+                    
+                    <div style="margin: 15px 0;">
+                        <select class="input-field">
+                            <option>1 passageiro</option>
+                            <option>2 passageiros</option>
+                            <option>3 passageiros</option>
+                        </select>
+                    </div>
+                    
+                    <button class="button">🔍 Buscar Caronas</button>
+                </div>
+                <div class="flow-arrow">→</div>
+            </div>
+
+            <!-- Tela 6: Resultados -->
+            <div class="wireframe">
+                <h3>6. Resultados da Busca</h3>
+                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                    <span style="font-size: 20px; margin-right: 10px;">←</span>
+                    <strong>São Paulo → Campinas</strong>
+                </div>
+                
+                <div class="small-text">3 caronas encontradas para hoje</div>
+                
+                <div class="result-item">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <strong>Maria Silva</strong> <span class="rating">⭐ 4.8</span>
+                            <div class="small-text">Saída: 14:30 - Chegada: 16:00</div>
+                            <div class="small-text">🚗 Honda Civic - 2 vagas</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="price">R$ 28</div>
+                            <div class="small-text">por pessoa</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-item">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <strong>Carlos Santos</strong> <span class="rating">⭐ 4.5</span>
+                            <div class="small-text">Saída: 15:00 - Chegada: 16:45</div>
+                            <div class="small-text">🚗 Toyota Corolla - 1 vaga</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="price">R$ 25</div>
+                            <div class="small-text">por pessoa</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flow-arrow">→</div>
+            </div>
+
+            <!-- Tela 7: Detalhes da Carona -->
+            <div class="wireframe">
+                <h3>7. Detalhes da Carona</h3>
+                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                    <span style="font-size: 20px; margin-right: 10px;">←</span>
+                    <strong>Detalhes da viagem</strong>
+                </div>
+                
+                <div class="box">
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <div class="profile-pic" style="margin-right: 15px;"></div>
+                        <div>
+                            <strong>Maria Silva</strong>
+                            <div class="rating">⭐⭐⭐⭐⭐ 4.8 (127 avaliações)</div>
+                            <div class="small-text">Membro desde 2022</div>
+                        </div>
+                    </div>
+                    
+                    <div style="border-top: 1px solid #ddd; padding-top: 15px;">
+                        <div><strong>🚗 Honda Civic</strong> - Branco</div>
+                        <div class="small-text">Placa: ABC-1234</div>
+                        
+                        <div style="margin: 15px 0;">
+                            <div>📍 São Paulo → Campinas</div>
+                            <div class="small-text">🕐 14:30 - 16:00 (1h30min)</div>
+                        </div>
+                        
+                        <div>💰 <span class="price">R$ 28,00</span> por pessoa</div>
+                        <div class="small-text">2 vagas disponíveis</div>
+                    </div>
+                </div>
+                
+                <button class="button">💬 Solicitar Carona</button>
+                <button class="button button-outline">📞 Contatar</button>
+                <div class="flow-arrow">→</div>
+            </div>
+
+            <!-- Tela 8: Oferecer Carona -->
+            <div class="wireframe">
+                <h3>8. Oferecer Carona</h3>
+                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                    <span style="font-size: 20px; margin-right: 10px;">←</span>
+                    <strong>Criar viagem</strong>
+                </div>
+                
+                <div class="box">
+                    <div style="margin: 10px 0;">🔵 <input type="text" class="input-field" placeholder="Saindo de..." style="width: 85%; display: inline-block;"></div>
+                    <div style="margin: 10px 0;">🔴 <input type="text" class="input-field" placeholder="Indo para..." style="width: 85%; display: inline-block;"></div>
+                    
+                    <div style="display: flex; gap: 10px; margin: 15px 0;">
+                        <input type="date" class="input-field" style="flex: 1;">
+                        <input type="time" class="input-field" style="flex: 1;">
+                    </div>
+                    
+                    <input type="number" class="input-field" placeholder="Preço por pessoa (R$)">
+                    
+                    <select class="input-field">
+                        <option>Vagas disponíveis</option>
+                        <option>1 vaga</option>
+                        <option>2 vagas</option>
+                        <option>3 vagas</option>
+                        <option>4 vagas</option>
+                    </select>
+                    
+                    <textarea class="input-field" placeholder="Observações (opcional)" rows="3"></textarea>
+                    
+                    <button class="button">🚗 Publicar Carona</button>
+                </div>
+                <div class="flow-arrow">→</div>
+            </div>
+
+            <!-- Tela 9: Confirmação -->
+            <div class="wireframe">
+                <h3>9. Confirmação</h3>
+                <div style="text-align: center; margin: 30px 0;">
+                    <div style="font-size: 48px; color: #4CAF50;">✅</div>
+                    <strong style="font-size: 18px;">Carona confirmada!</strong>
+                </div>
+                
+                <div class="box">
+                    <strong>Detalhes da sua viagem:</strong>
+                    <div style="margin: 15px 0;">
+                        <div>📍 São Paulo → Campinas</div>
+                        <div>🕐 Hoje, 14:30</div>
+                        <div>👤 Maria Silva</div>
+                        <div>💰 R$ 28,00</div>
+                    </div>
+                    
+                    <div class="small-text" style="background: #fff3cd; padding: 10px; border-radius: 4px; margin: 15px 0;">
+                        ℹ️ A motorista entrou em contato com você. Verifique suas mensagens.
+                    </div>
+                </div>
+                
+                <button class="button">💬 Ir para Chat</button>
+                <button class="button button-outline">🏠 Voltar ao Início</button>
+            </div>
+
+            <!-- Tela 10: Perfil -->
+            <div class="wireframe">
+                <h3>10. Perfil do Usuário</h3>
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div class="profile-pic" style="width: 80px; height: 80px; margin: 0 auto 10px auto;"></div>
+                    <strong>João Silva</strong>
+                    <div class="rating">⭐ 4.6 (23 avaliações)</div>
+                    <div class="small-text">Membro desde Janeiro 2024</div>
+                </div>
+                
+                <div class="box">
+                    <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                        <span>📱 Telefone verificado</span>
+                        <span style="color: #4CAF50;">✓</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                        <span>📧 E-mail verificado</span>
+                        <span style="color: #4CAF50;">✓</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                        <span>🚗 Documento do veículo</span>
+                        <span style="color: #4CAF50;">✓</span>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <strong>Estatísticas</strong>
+                    <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                        <span>Viagens como passageiro:</span>
+                        <strong>15</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                        <span>Viagens como motorista:</span>
+                        <strong>8</strong>
+                    </div>
+                </div>
+                
+                <button class="button button-outline">Editar Perfil</button>
+            </div>
+
+            <!-- Tela 11: Chat -->
+            <div class="wireframe">
+                <h3>11. Chat/Mensagens</h3>
+                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                    <span style="font-size: 20px; margin-right: 10px;">←</span>
+                    <div class="profile-pic" style="width: 40px; height: 40px; margin-right: 10px;"></div>
+                    <strong>Maria Silva</strong>
+                </div>
+                
+                <div class="box" style="height: 250px; overflow-y: auto; padding: 10px;">
+                    <div style="background: #e3f2fd; padding: 8px; border-radius: 8px; margin: 5px 0; max-width: 70%;">
+                        <div class="small-text">Maria - 13:45</div>
+                        Oi! Confirmei sua carona para hoje às 14:30. Vou te buscar no Terminal Rodoviário.
+                    </div>
+                    
+                    <div style="background: #f1f8e9; padding: 8px; border-radius: 8px; margin: 5px 0; max-width: 70%; margin-left: auto;">
+                        <div class="small-text">Você - 13:47</div>
+                        Perfeito! Já estou a caminho. Obrigado!
+                    </div>
+                    
+                    <div style="background: #e3f2fd; padding: 8px; border-radius: 8px; margin: 5px 0; max-width: 70%;">
+                        <div class="small-text">Maria - 14:15</div>
+                        Chegando em 5 minutos. Estou em um Honda Civic branco, placa ABC-1234.
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <input type="text" class="input-field" placeholder="Digite sua mensagem..." style="flex: 1;">
+                    <button class="button" style="width: auto; padding: 8px 15px;">Enviar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Documento de Descrição -->
+        <div style="background: white; padding: 30px; border-radius: 8px; margin-top: 30px;">
+            <h2 style="text-align: center; color: #4CAF50;">📋 Documento de Descrição do Projeto</h2>
+            
+            <div style="margin: 20px 0;">
+                <h3>👥 Integrantes do Grupo:</h3>
+                <p>[Inserir nomes dos integrantes aqui]</p>
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <h3>💡 Proposta do Projeto:</h3>
+                <p><strong>EcoRide</strong> é um sistema de carona compartilhada que funciona como uma alternativa mais simples e barata ao BlaBlaCar. O objetivo é conectar motoristas e passageiros de forma eficiente, promovendo a sustentabilidade e reduzindo custos de transporte.</p>
+                
+                <p><strong>Características principais:</strong></p>
+                <ul>
+                    <li>Interface mais simples e intuitiva</li>
+                    <li>Taxas menores para aumentar a acessibilidade</li>
+                    <li>Foco na experiência do usuário brasileiro</li>
+                    <li>Sistema de verificação de segurança</li>
+                    <li>Chat integrado para comunicação</li>
+                </ul>
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <h3>🔄 Fluxo Principal Representado:</h3>
+                <ol>
+                    <li><strong>Splash Screen:</strong> Apresentação inicial da marca</li>
+                    <li><strong>Login/Cadastro:</strong> Autenticação do usuário</li>
+                    <li><strong>Cadastro:</strong> Criação de nova conta</li>
+                    <li><strong>Home:</strong> Escolha entre buscar ou oferecer carona</li>
+                    <li><strong>Buscar Carona:</strong> Formulário de busca (origem, destino, data)</li>
+                    <li><strong>Resultados:</strong> Lista de caronas disponíveis</li>
+                    <li><strong>Detalhes:</strong> Informações completas da carona e motorista</li>
+                    <li><strong>Oferecer Carona:</strong> Formulário para criar nova viagem</li>
+                    <li><strong>Confirmação:</strong> Sucesso na reserva da carona</li>
+                    <li><strong>Perfil:</strong> Informações e verificações do usuário</li>
+                    <li><strong>Chat:</strong> Comunicação entre motorista e passageiro</li>
+                </ol>
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <h3>🎯 Diferenciais do EcoRide:</h3>
+                <ul>
+                    <li>Processo de cadastro simplificado</li>
+                    <li>Verificação de segurança obrigatória</li>
+                    <li>Interface otimizada para mobile</li>
+                    <li>Sistema de avaliações transparente</li>
+                    <li>Preços mais acessíveis</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

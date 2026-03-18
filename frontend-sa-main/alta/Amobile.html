@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>EcoRide - App Mobile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+            max-width: 428px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Mobile Header */
+        .mobile-header {
+            background: #fff;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            max-width: 428px;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-mobile {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-icon:hover {
+            background: #e9ecef;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            margin-bottom: 80px;
+            min-height: calc(100vh - 160px);
+        }
+
+        /* Home Screen */
+        .home-screen {
+            padding: 1rem;
+        }
+
+        .welcome-card {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 2rem 1.5rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .welcome-card h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-card p {
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .action-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .action-card:active {
+            transform: scale(0.95);
+        }
+
+        .action-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .action-title {
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Search Form Mobile */
+        .search-form-mobile {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .form-group-mobile {
+            margin-bottom: 1rem;
+        }
+
+        .form-group-mobile label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .form-group-mobile input,
+        .form-group-mobile select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            font-size: 1rem;
+            background: #f8f9fa;
+            transition: all 0.3s;
+        }
+
+        .form-group-mobile input:focus,
+        .form-group-mobile select:focus {
+            outline: none;
+            border-color: #28a745;
+            background: white;
+        }
+
+        .btn-primary-mobile {
+            width: 100%;
+            padding: 1rem;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary-mobile:active {
+            transform: scale(0.98);
+            background: #218838;
+        }
+
+        /* Stats Mobile */
+        .stats-mobile {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Ride Cards Mobile */
+        .rides-section-mobile {
+            margin-bottom: 2rem;
+        }
+
+        .section-title-mobile {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .ride-card-mobile {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .ride-route-mobile {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .route-city {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .route-arrow {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .ride-info-mobile {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .ride-price-mobile {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #28a745;
+            text-align: right;
+            margin-bottom: 1rem;
+        }
+
+        .btn-book {
+            width: 100%;
+            padding: 0.8rem;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-book:active {
+            transform: scale(0.98);
+            background: #218838;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 428px;
+            background: white;
+            box-shadow: 0 -2px 20px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-around;
+            padding: 0.8rem 0;
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #666;
+        }
+
+        .nav-item.active {
+            color: #28a745;
+        }
+
+        .nav-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        /* Pages */
+        .page {
+            display: none;
+            padding: 1rem;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Search Page */
+        .search-filters {
+            background: white;
+            padding: 1rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .filter-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-row .form-group-mobile {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        /* Offer Page */
+        .offer-form {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-row .form-group-mobile {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .textarea-mobile {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            font-size: 1rem;
+            background: #f8f9fa;
+            min-height: 100px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .textarea-mobile:focus {
+            outline: none;
+            border-color: #28a745;
+            background: white;
+        }
+
+        /* Profile Page */
+        .profile-header {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 0 0 20px 20px;
+            text-align: center;
+            margin: -1rem -1rem 2rem -1rem;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-rating {
+            opacity: 0.9;
+        }
+
+        .menu-item {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .menu-item:active {
+            transform: scale(0.98);
+        }
+
+        .menu-item-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .menu-icon {
+            width: 40px;
+            height: 40px;
+            background: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* Modal Mobile */
+        .modal-mobile {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: flex-end;
+        }
+
+        .modal-content-mobile {
+            background: white;
+            width: 100%;
+            max-width: 428px;
+            margin: 0 auto;
+            border-radius: 20px 20px 0 0;
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-out;
+        }
+
+        .modal-mobile.show .modal-content-mobile {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .close-btn {
+            width: 30px;
+            height: 30px;
+            border: none;
+            background: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #28a745;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 20px rgba(40, 167, 69, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 100;
+        }
+
+        .fab:active {
+            transform: scale(0.9);
+        }
+
+        /* Loading State */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #28a745;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 375px) {
+            .quick-actions {
+                gap: 0.5rem;
+            }
+            
+            .action-card {
+                padding: 1rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .form-row .form-group-mobile {
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Success/Error Messages */
+        .message {
+            position: fixed;
+            top: 100px;
+            left: 1rem;
+            right: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
+            font-weight: 500;
+            z-index: 1500;
+            transform: translateY(-100px);
+            opacity: 0;
+            transition: all 0.3s ease-out;
+        }
+
+        .message.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Swipe indicators */
+        .swipe-indicator {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+            padding: 0.5rem;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .swipe-left {
+            left: 10px;
+        }
+
+        .swipe-right {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <div class="logo-mobile">🚗 EcoRide</div>
+        <div class="header-actions">
+            <button class="btn-icon" onclick="showNotifications()">
+                🔔
+            </button>
+            <button class="btn-icon" onclick="showMenu()">
+                ☰
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <div class="home-screen">
+                <div class="welcome-card">
+                    <h1>Olá! 👋</h1>
+                    <p>Encontre sua próxima carona sustentável</p>
+                    <div class="stats-mobile">
+                        <div class="stat-card">
+                            <div class="stat-number">2.5M+</div>
+                            <div class="stat-label">Usuários</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Viagens/dia</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <div class="action-card" onclick="showPage('search-page')">
+                        <div class="action-icon">🔍</div>
+                        <div class="action-title">Buscar Carona</div>
+                    </div>
+                    <div class="action-card" onclick="showPage('offer-page')">
+                        <div class="action-icon">🚗</div>
+                        <div class="action-title">Oferecer Carona</div>
+                    </div>
+                </div>
+
+                <div class="rides-section-mobile">
+                    <div class="section-title-mobile">🔥 Populares hoje</div>
+                    
+                    <div class="ride-card-mobile">
+                        <div class="ride-route-mobile">
+                            <span class="route-city">São Paulo</span>
+                            <span class="route-arrow">→</span>
+                            <span class="route-city">Rio de Janeiro</span>
+                        </div>
+                        <div class="ride-info-mobile">
+                            <div>📅 Hoje, 14:30</div>
+                            <div>⭐ 4.9 (127)</div>
+                            <div>👤 Maria Silva</div>
+                            <div>🚗 Honda Civic</div>
+                        </div>
+                        <div class="ride-price-mobile">R$ 65,00</div>
+                        <button class="btn-book" onclick="bookRide('São Paulo → Rio de Janeiro')">Reservar</button>
+                    </div>
+
+                    <div class="ride-card-mobile">
+                        <div class="ride-route-mobile">
+                            <span class="route-city">Campinas</span>
+                            <span class="route-arrow">→</span>
+                            <span class="route-city">São Paulo</span>
+                        </div>
+                        <div class="ride-info-mobile">
+                            <div>📅 Amanhã, 07:00</div>
+                            <div>⭐ 4.8 (89)</div>
+                            <div>👤 João Santos</div>
+                            <div>🚗 Toyota Corolla</div>
+                        </div>
+                        <div class="ride-price-mobile">R$ 25,00</div>
+                        <button class="btn-book" onclick="bookRide('Campinas → São Paulo')">Reservar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Page -->
+        <div id="search-page" class="page">
+            <div class="search-filters">
+                <div class="filter-row">
+                    <div class="form-group-mobile">
+                        <label>De onde</label>
+                        <input type="text" placeholder="São Paulo, SP" id="search-from">
+                    </div>
+                    <div class="form-group-mobile">
+                        <label>Para onde</label>
+                        <input type="text" placeholder="Rio de Janeiro, RJ" id="search-to">
+                    </div>
+                </div>
+                <div class="filter-row">
+                    <div class="form-group-mobile">
+                        <label>Data</label>
+                        <input type="date" id="search-date">
+                    </div>
+                    <div class="form-group-mobile">
+                        <label>Passageiros</label>
+                        <select id="search-passengers">
+                            <option>1 pessoa</option>
+                            <option>2 pessoas</option>
+                            <option>3 pessoas</option>
+                            <option>4 pessoas</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn-primary-mobile" onclick="performSearch()">🔍 Buscar Caronas</button>
+            </div>
+
+            <div id="search-results">
+                <div class="section-title-mobile">Resultados encontrados</div>
+                
+                <div class="ride-card-mobile">
+                    <div class="ride-route-mobile">
+                        <span class="route-city">São Paulo</span>
+                        <span class="route-arrow">→</span>
+                        <span class="route-city">Rio de Janeiro</span>
+                    </div>
+                    <div class="ride-info-mobile">
+                        <div>📅 Hoje, 14:30</div>
+                        <div>⭐ 4.9 (127)</div>
+                        <div>👤 Maria Silva</div>
+                        <div>🚗 Honda Civic</div>
+                    </div>
+                    <div class="ride-price-mobile">R$ 65,00</div>
+                    <button class="btn-book" onclick="bookRide('São Paulo → Rio de Janeiro')">Reservar</button>
+                </div>
+
+                <div class="ride-card-mobile">
+                    <div class="ride-route-mobile">
+                        <span class="route-city">São Paulo</span>
+                        <span class="route-arrow">→</span>
+                        <span class="route-city">Rio de Janeiro</span>
+                    </div>
+                    <div class="ride-info-mobile">
+                        <div>📅 Hoje, 18:00</div>
+                        <div>⭐ 4.7 (93)</div>
+                        <div>👤 Carlos Mendes</div>
+                        <div>🚗 Chevrolet Onix</div>
+                    </div>
+                    <div class="ride-price-mobile">R$ 70,00</div>
+                    <button class="btn-book" onclick="bookRide('São Paulo → Rio de Janeiro')">Reservar</button>
+                </div>
+
+                <div class="ride-card-mobile">
+                    <div class="ride-route-mobile">
+                        <span class="route-city">São Paulo</span>
+                        <span class="route-arrow">→</span>
+                        <span class="route-city">Rio de Janeiro</span>
+                    </div>
+                    <div class="ride-info-mobile">
+                        <div>📅 Amanhã, 09:15</div>
+                        <div>⭐ 4.6 (76)</div>
+                        <div>👤 Paula Oliveira</div>
+                        <div>🚗 Hyundai HB20</div>
+                    </div>
+                    <div class="ride-price-mobile">R$ 60,00</div>
+                    <button class="btn-book" onclick="bookRide('São Paulo → Rio de Janeiro')">Reservar</button>
+                </div>
+            </div>
+
+            <div class="loading" id="search-loading">
+                <div class="loading-spinner"></div>
+                <p>Buscando caronas...</p>
+            </div>
+        </div>
+
+        <!-- Offer Page -->
+        <div id="offer-page" class="page">
+            <div class="offer-form">
+                <h2 style="margin-bottom: 1.5rem; color: #333;">Oferecer Carona</h2>
+                
+                <div class="form-row">
+                    <div class="form-group-mobile">
+                        <label>De onde</label>
+                        <input type="text" placeholder="São Paulo, SP">
+                    </div>
+                    <div class="form-group-mobile">
+                        <label>Para onde</label>
+                        <input type="text" placeholder="Rio de Janeiro, RJ">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group-mobile">
+                        <label>Data</label>
+                        <input type="date">
+                    </div>
+                    <div class="form-group-mobile">
+                        <label>Horário</label>
+                        <input type="time">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group-mobile">
+                        <label>Vagas</label>
+                        <select>
+                            <option>1 vaga</option>
+                            <option>2 vagas</option>
+                            <option>3 vagas</option>
+                            <option>4 vagas</option>
+                        </select>
+                    </div>
+                    <div class="form-group-mobile">
+                        <label>Preço (R$)</label>
+                        <input type="number" placeholder="50" min="1">
+                    </div>
+                </div>
+
+                <div class="form-group-mobile">
+                    <label>Informações adicionais</label>
+                    <textarea class="textarea-mobile" placeholder="Ponto de encontro, preferências, observações..."></textarea>
+                </div>
+
+                <button class="btn-primary-mobile" onclick="publishRide()">🚗 Publicar Carona</button>
+            </div>
+        </div>
+
+        <!-- Profile Page -->
+        <div id="profile-page" class="page">
+            <div class="profile-header">
+                <div class="profile-avatar">👤</div>
+                <div class="profile-name">João Silva</div>
+                <div class="profile-rating">⭐ 4.8 • 45 viagens</div>
+            </div>
+
+            <div class="menu-item" onclick="showMessage('Funcionalidade em desenvolvimento', 'error')">
+                <div class="menu-item-content">
+                    <div class="menu-icon">🚗</div>
+                    <div>
+                        <div style="font-weight: 600;">Minhas viagens</div>
+                        <div style="font-size: 0.8rem; color: #666;">Histórico e agendadas</div>
+                    </div>
+                </div>
+                <div>→</div>
+            </div>
+
+            <div class="menu-item" onclick="showMessage('Funcionalidade em desenvolvimento', 'error')">
+                <div class="menu-item-content">
+                    <div class="menu-icon">💳</div>
+                    <div>
+                        <div style="font-weight: 600;">Pagamentos</div>
+                        <div style="font-size: 0.8rem; color: #666;">Cartões e histórico</div>
+                    </div>
+                </div>
+                <div>→</div>
+            </div>
+
+            <div class="menu-item" onclick="showMessage('Funcionalidade em desenvolvimento', 'error')">
+                <div class="menu-item-content">
+                    <div class="menu-icon">⭐</div>
+                    <div>
+                        <div style="font-weight: 600;">Avaliações</div>
+                        <div style="font-size: 0.8rem; color: #666;">Suas notas e comentários</div>
+                    </div>
+                </div>
+                <div>→</div>
+            </div>
+
+            <div class="menu-item" onclick="showMessage('Funcionalidade em desenvolvimento', 'error')">
+                <div class="menu-item-content">
+                    <div class="menu-icon">🌱</div>
+                    <div>
+                        <div style="font-weight: 600;">Impacto ambiental</div>
+                        <div style="font-size: 0.8rem; color: #666;">CO₂ economizado</div>
+                    </div>
+                </div>
+                <div>→</div>
+            </div>
+
+            <div class="menu-item" onclick="showMessage('Funcionalidade em desenvolvimento', 'error')">
+                <div class="menu-item-content">
+                    <div class="menu-icon">⚙️</div>
+                    <div>
+                        <div style="font-weight: 600;">Configurações</div>
+                        <div style="font-size: 0.8rem; color: #666;">Conta e privacidade</div>
+                    </div>
+                </div>
+                <div>→</div>
+            </div>
+
+            <div class="menu-item" onclick="showMessage('Funcionalidade em desenvolvimento', 'error')">
+                <div class="menu-item-content">
+                    <div class="menu-icon">❓</div>
+                    <div>
+                        <div style="font-weight: 600;">Ajuda</div>
+                        <div style="font-size: 0.8rem; color: #666;">Suporte e FAQ</div>
+                    </div>
+                </div>
+                <div>→</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active" onclick="showPage('home-page')">
+            <div class="nav-icon">🏠</div>
+            <div class="nav-label">Início</div>
+        </a>
+        <a href="#" class="nav-item" onclick="showPage('search-page')">
+            <div class="nav-icon">🔍</div>
+            <div class="nav-label">Buscar</div>
+        </a>
+        <a href="#" class="nav-item" onclick="showPage('offer-page')">
+            <div class="nav-icon">➕</div>
+            <div class="nav-label">Oferecer</div>
+        </a>
+        <a href="#" class="nav-item" onclick="showPage('profile-page')">
+            <div class="nav-icon">👤</div>
+            <div class="nav-label">Perfil</div>
+        </a>
+    </nav>
+
+    <!-- Floating Action Button -->
+    <button class="fab" onclick="showPage('offer-page')" title="Oferecer carona">
+        ➕
+    </button>
+
+    <!-- Modal -->
+    <div id="modal" class="modal-mobile">
+        <div class="modal-content-mobile">
+            <div class="modal-header">
+                <div class="modal-title" id="modal-title">Título</div>
+                <button class="close-btn" onclick="closeModal()">✕</button>
+            </div>
+            <div id="modal-body">
+                Conteúdo do modal
+            </div>
+        </div>
+    </div>
+
+    <!-- Message -->
+    <div id="message" class="message"></div>
+
+    <script>
+        // Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show selected page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // Update bottom navigation
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Find corresponding nav item and activate it
+            const pageToNavMap = {
+                'home-page': 0,
+                'search-page': 1,
+                'offer-page': 2,
+                'profile-page': 3
+            };
+
+            const navIndex = pageToNavMap[pageId];
+            if (navIndex !== undefined) {
+                navItems[navIndex].classList.add('active');
+            }
+        }
+
+        // Search functionality
+        function performSearch() {
+            const loadingDiv = document.getElementById('search-loading');
+            const resultsDiv = document.getElementById('search-results');
+            
+            // Show loading
+            resultsDiv.style.display = 'none';
+            loadingDiv.style.display = 'block';
+            
+            // Simulate search delay
+            setTimeout(() => {
+                loadingDiv.style.display = 'none';
+                resultsDiv.style.display = 'block';
+                showMessage('Encontramos 3 caronas disponíveis!', 'success');
+            }, 2000);
+        }
+
+        // Book ride
+        function bookRide(route) {
+            showMessage(`Carona ${route} reservada com sucesso! 🎉`, 'success');
+        }
+
+        // Publish ride
+        function publishRide() {
+            showMessage('Carona publicada! Em breve você receberá solicitações. 🚗', 'success');
+        }
+
+        // Show message
+        function showMessage(text, type = 'success') {
+            const messageEl = document.getElementById('message');
+            messageEl.textContent = text;
+            messageEl.className = `message ${type}`;
+            messageEl.classList.add('show');
+            
+            setTimeout(() => {
+                messageEl.classList.remove('show');
+            }, 3000);
+        }
+
+        // Modal functions
+        function showModal(title, content) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-body').innerHTML = content;
+            const modal = document.getElementById('modal');
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        }
+
+        // Header actions
+        function showNotifications() {
+            showModal('Notificações', `
+                <div style="space-y: 1rem;">
+                    <div style="padding: 1rem; background: #f8f9fa; border-radius: 10px; margin-bottom: 1rem;">
+                        <div style="font-weight: 600;">Nova solicitação de carona</div>
+                        <div style="font-size: 0.9rem; color: #666;">Maria quer se juntar à sua viagem SP → RJ</div>
+                        <div style="font-size: 0.8rem; color: #999; margin-top: 0.5rem;">Há 2 horas</div>
+                    </div>
+                    <div style="padding: 1rem; background: #f8f9fa; border-radius: 10px; margin-bottom: 1rem;">
+                        <div style="font-weight: 600;">Viagem confirmada</div>
+                        <div style="font-size: 0.9rem; color: #666;">Sua carona para Santos foi confirmada</div>
+                        <div style="font-size: 0.8rem; color: #999; margin-top: 0.5rem;">Ontem</div>
+                    </div>
+                    <div style="padding: 1rem; background: #f8f9fa; border-radius: 10px;">
+                        <div style="font-weight: 600;">Avaliação recebida</div>
+                        <div style="font-size: 0.9rem; color: #666;">João avaliou sua viagem com ⭐⭐⭐⭐⭐</div>
+                        <div style="font-size: 0.8rem; color: #999; margin-top: 0.5rem;">2 dias atrás</div>
+                    </div>
+                </div>
+            `);
+        }
+
+        function showMenu() {
+            showModal('Menu', `
+                <div style="space-y: 1rem;">
+                    <div style="padding: 1rem; background: #f8f9fa; border-radius: 10px; margin-bottom: 1rem; text-align: center;">
+                        <div>📱 <strong>Baixe nosso app</strong></div>
+                        <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Disponível na App Store e Google Play</div>
+                    </div>
+                    <div style="padding: 1rem; background: #f8f9fa; border-radius: 10px; margin-bottom: 1rem; text-align: center;">
+                        <div>🌱 <strong>Impacto ambiental</strong></div>
+                        <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Você já economizou 2.3 toneladas de CO₂</div>
+                    </div>
+                    <div style="padding: 1rem; background: #f8f9fa; border-radius: 10px; margin-bottom: 1rem; text-align: center;">
+                        <div>❓ <strong>Central de ajuda</strong></div>
+                        <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Tire suas dúvidas e reporte problemas</div>
+                    </div>
+                    <div style="padding: 1rem; background: #f8f9fa; border-radius: 10px; text-align: center;">
+                        <div>📞 <strong>Emergência</strong></div>
+                        <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Suporte 24h para situações urgentes</div>
+                    </div>
+                </div>
+            `);
+        }
+
+        // Set minimum date to today
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInputs = document.querySelectorAll('input[type="date"]');
+            dateInputs.forEach(input => {
+                input.min = today;
+            });
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Touch gestures for mobile (basic swipe detection)
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 100;
+            const swipeDistance = touchEndX - touchStartX;
+            
+            if (Math.abs(swipeDistance) < swipeThreshold) return;
+            
+            const currentPage = document.querySelector('.page.active').id;
+            const pages = ['home-page', 'search-page', 'offer-page', 'profile-page'];
+            const currentIndex = pages.indexOf(currentPage);
+            
+            if (swipeDistance > 0 && currentIndex > 0) {
+                // Swipe right - go to previous page
+                showPage(pages[currentIndex - 1]);
+            } else if (swipeDistance < 0 && currentIndex < pages.length - 1) {
+                // Swipe left - go to next page
+                showPage(pages[currentIndex + 1]);
+            }
+        }
+
+        // Add vibration feedback for buttons (if supported)
+        function vibrate(pattern = 10) {
+            if ('vibrate' in navigator) {
+                navigator.vibrate(pattern);
+            }
+        }
+
+        // Add vibration to all buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('button, .btn-book, .action-card, .menu-item');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => vibrate(10));
+            });
+        });
+
+        // Progressive Web App features
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            deferredPrompt = e;
+            // Show install banner after 30 seconds
+            setTimeout(() => {
+                if (deferredPrompt) {
+                    showMessage('💡 Instale o EcoRide para uma experiência melhor!', 'success');
+                }
+            }, 30000);
+        });
+
+        // Service Worker registration (basic)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                // In a real app, you would register your service worker here
+                console.log('Service Worker support detected');
+            });
+        }
+    </script>
+</body>
+</html>
